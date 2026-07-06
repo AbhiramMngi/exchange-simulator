@@ -1,1 +1,1 @@
-# exchange-simulator
+# Exchange Simulator
