@@ -1,4 +1,6 @@
 #include <cstdint>
+#include <iostream>
+
 enum class Side: std::uint8_t {
     BUY,
     SELL
@@ -18,16 +20,16 @@ struct Order {
 
 
 struct Trade {
-    std::uint64_t buy_order_id;
-    std::uint64_t sell_order_id;
+    std::uint64_t bid_order_id;
+    std::uint64_t ask_order_id;
     std::uint64_t price; 
-    std::uint64_t timestamp_ns;
+    std::uint64_t trade_no;
     std::uint32_t quantity;
+    bool operator==(const Trade&) const = default;
+    friend std::ostream& operator<<(std::ostream& cout, const Trade& trade);
 };
 
-struct BuyComparator {
-    bool operator()(const Order& a, const Order& b) const;
-};
-struct SellComparator {
+
+struct OrderComparator {
     bool operator()(const Order& a, const Order& b) const;
 };
